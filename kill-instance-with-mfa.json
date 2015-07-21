@@ -1,0 +1,51 @@
+//////////////////////////// Old Version, Warning, pay attention to NotNull and aws:MultiFactorAuthAge portion.
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "Stmt1401364329000",
+            "Effect": "Allow",
+            "Action": [
+                "ec2:TerminateInstances",
+                "autoscaling:TerminateInstanceInAutoScalingGroup"
+            ],
+            "Condition": {
+                "ForAllValues:StringLike": {
+                    "ec2:ResourceTag/Name": "bastion*"
+                },
+                "NotNull": {
+                    "aws:MultiFactorAuthAge": "true"
+                }
+            },
+            "Resource": [
+                "*"
+            ]
+        }
+    ]
+}
+
+/////////////////////////// New Version, IAM user which following policy applied must provied MFA.
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "Stmt1401364329000",
+            "Effect": "Allow",
+            "Action": [
+                "ec2:TerminateInstances",
+                "autoscaling:TerminateInstanceInAutoScalingGroup"
+            ],
+            "Condition": {
+                "ForAllValues:StringLike": {
+                    "ec2:ResourceTag/Name": "bastion*"
+                },
+                "Bool": {
+                    "aws:MultiFactorAuthPresent": "true"
+                }
+            },
+            "Resource": [
+                "*"
+            ]
+        }
+    ]
+}
