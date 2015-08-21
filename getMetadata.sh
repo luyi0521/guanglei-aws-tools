@@ -1,6 +1,7 @@
 #!/bin/bash
 # NO PRODUCTION SAFE WARRANTY!!
 # Using GET to retrieve all meta data on EC2 instance.
+# version 0.1
 digger () {
 PADDRESS=$1;
 for ENTRY in `GET $PADDRESS`;
