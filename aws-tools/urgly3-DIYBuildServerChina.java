@@ -56,6 +56,7 @@ import com.amazonaws.util.json.JSONObject;
 
 /*
  * guanglei@
+ * Don't try it in PRODUCTION, this is a simple demo to use Java SDK to create a micro auto build server.
  * Sample event payload:
  * To make this demo work, a record in dynamodb must be provisioned. Will improve this.
  * "Subject" : "Amazon S3 Notification",
