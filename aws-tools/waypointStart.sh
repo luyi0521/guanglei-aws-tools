@@ -1,8 +1,8 @@
 # Version 3
-# Spin up a EC2 and allow inbound SSH in default VPC.
+# Spin up a EC2 and allow inbound SSH in default VPC
 TAG=${1}
-WAYPOINT_SG=${TAG}-sg
 PROFILE=${2}
+WAYPOINT_SG=${TAG}-sg
 KEY=${TAG}-${PROFILE}-key
 
 # Finding Waypoint
@@ -15,9 +15,11 @@ if [ $NO_WAYPOINT -eq 1 ]; then
     echo "=> Waypoint security group exists, please ensure you think allowing inbound port 22 is ok for it."
     WAYPOINT_SGID=`aws ec2 describe-security-groups --filters "Name=group-name,Values=${WAYPOINT_SG}" --query "SecurityGroups[0].GroupId" --output text --profile ${PROFILE}`
   fi
-  aws ec2 create-key-pair --key-name ${KEY} --query "KeyMaterial" --output text --profile ${PROFILE} > ~/${KEY}.pem
+  aws ec2 create-key-pair --key-name ${KEY} --query "KeyMaterial" --output text --profile ${PROFILE} > ~/temp/${KEY}.pem
   if [ $? = 255 ]; then
     echo "=> Key ${KEY} exists, please ensure you have access on ~/${KEY}.pem"
+  else
+    cat ~/temp/${KEY}.pem > ~/${KEY}.pem
   fi
   aws ec2 authorize-security-group-ingress --group-id ${WAYPOINT_SGID} --protocol tcp --port 22 --cidr 0.0.0.0/0 --profile ${PROFILE}
   if [ $? = 255 ]; then
