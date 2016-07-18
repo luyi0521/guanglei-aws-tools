@@ -1,7 +1,7 @@
 # Version 3
 # Spin up a EC2 and allow inbound SSH in default VPC //TODO
 TAG=waypoint
-PROFILE=<your_profile_name>
+PROFILE=${1}
 WAYPOINT_SG=${TAG}-sg
 KEY=${TAG}-${PROFILE}-key
 

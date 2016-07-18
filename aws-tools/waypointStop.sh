@@ -1,4 +1,4 @@
-PROFILE=<your_profile_name>
+PROFILE=${1}
 TAG=waypoint
 WAYPOINT_ID=`aws ec2 describe-instances --filters "Name=instance-state-name,Values=running" "Name=tag-key,Values=Name" "Name=tag-value,Values=${TAG}" --query "Reservations[*].Instances[*].InstanceId" --output text --profile ${PROFILE}`
 echo "WAYPOINT_ID: ${WAYPOINT_ID}"

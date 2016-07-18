@@ -1,4 +1,4 @@
-PROFILE=<your_profile_name>
+PROFILE=${1}
 TAG=waypoint
 KEY=${TAG}-${PROFILE}-key
 while [ true ]
