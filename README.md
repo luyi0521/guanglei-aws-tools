@@ -2,5 +2,5 @@
 
 # Features
 * Simple tools for learning AWS.
-* Sometimes, like xeyes, they watch what you do and reports to your boss.
+* No support available, do NOT use it in production!
 * It's good to read every file for readme.
